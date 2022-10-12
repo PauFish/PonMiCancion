@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pon Mi Cancion</title>
+<?php 
+    include("cabecera.php"); 
+    echo "indice";
+?> 
 
-</head>
+<div class="body">
+<h1>Pon Mi Cancion</h1>
+<h2>Elige que canciones sonarán en la fiesta</h2>
+<div class="boton_fiestas">
+    <button type="button" class="fiestas">Próximas Fiestas!</button>
+</div>
+</div>
 
-<a href="indice.php">Inicio</a>
-<a href="portafolio.php">Portafolio</a>
-<a href="cerrar.php">Cerrar</a>
 
-
-<body>
-</body>
-</html>        
+<?php 
+    include("pie.php"); 
+?>   
