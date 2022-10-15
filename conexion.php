@@ -22,8 +22,6 @@ class conexion {
         }
     }    
 
-
-
        //ejecuta una isntruccion sql y retorna el ultimo id insertado
     public function ejecutar($sql){
 
