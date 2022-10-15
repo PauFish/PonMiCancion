@@ -1,8 +1,12 @@
+<?php include("cabecera.php");?> 
+<?php include("conexion.php");?> 
 <?php 
-    include("cabecera.php"); 
-    echo "indice";
-?> 
+//intruccion de consulta
+    $objConexion= new conexion();
+    $proyectos= $objConexion->consultar("SELECT * FROM `usuarios`"); 
 
+    
+?> 
 <div class="body">
 <h1>Pon Mi Cancion</h1>
 <h2>Elige que canciones sonarán en la fiesta</h2>
@@ -11,7 +15,12 @@
 </div>
 </div>
 
+<?php foreach ($proyectos as $proyecto){ ?>
 
-<?php 
+<h2>Usuarios"cambir por fiestas luego"</h2>
+
+
+<?php } ?>
+<?php
     include("pie.php"); 
 ?>   

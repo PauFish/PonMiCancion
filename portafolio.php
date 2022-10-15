@@ -38,14 +38,15 @@ if($_GET){
 <br>
  <!--Enctype recepciona los archivos-->
 <form method="post" action="portafolio.php" enctype="multipart/form-data">
-    Nombre Usuario: <input type="text" class="form-control" name="nombre" >
+    <!--introduce el nombre" es para accesibilidad-->
+    Nombre: <input required="Introduce tu Nombre"  class="form-control" type="text" name="nombre" >
    <br>
-    Apellido: <input type="text" class="form-control" name="apellido">
+    Apellido: <input required="Introduce tu Apellido"  class="form-control" type="text"  name="apellido">
     <br>
-    Email: <input type="text" class="form-control" name="email">
+    Email: <input required="Introduce tu Email"  class="form-control" type="text"  name="email">
     <br>
-    Telefono: <input type="text" class="form-control" name="telefono">
-   
+    Telefono: <input required="Introduce tu Telefono"  class="form-control" type="text"  name="telefono">
+   <br>
 
     <input type="submit" value="Enviar proyecto">
 
