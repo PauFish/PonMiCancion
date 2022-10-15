@@ -1,5 +1,8 @@
 <?php 
+
+    include("conexion.php");    
     include("cabecera.php"); 
+    
 ?>   
 
 <h1>Soy el portafolio/Formulario</h1>
