@@ -22,12 +22,22 @@ class conexion {
         }
     }    
 
-       //ejecuta una isntruccion sql y retorna el ultimo id insertado
+       //ejecuta una isntruccion sql y retorna el ultimo id. Para Insert, Update, Delete
     public function ejecutar($sql){
 
         $this->conexion->exec($sql);
         return $this->conexion->lastInsertId();
        }
+       public function consultar($sql){
+        /*ejecutar la intruccion con 'prepare', tomar la intruccion  sql y almacenarla en una
+         variable, dicha variable ya tiene la informacion de retorno que seria toda la informacion*/
+            $sentencia = $this->conexion->prepare($sql);
+            //ejecutar la sentencia ya que tenemos la sentencia sql preparada la metemos y ejecutamos.
+            $sentencia->execute();
+            //fetchall retorna todos los registos que puedas consulat en sql
+            return $sentencia->fetchAll();
+
+        }
 
 }
 
