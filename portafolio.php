@@ -1,9 +1,10 @@
+
 <?php include("cabecera.php"); ?>
 <?php include("conexion.php"); ?>
 <?php 
 
 if($_POST){
-    $nombre= $_POST['nombre'];
+    
     $nombre=$_POST['nombre'];
     $apellido=$_POST['apellido'];
     $email=$_POST['email'];
@@ -11,14 +12,14 @@ if($_POST){
 
     $fecha=new DateTime();
     //mumeros de tiempo _ nombre del archivo
-    $imagen=$fecha->getTimestamp()."_".$_FILES['archivo']['name'];
+    $imagen=$_FILES['archivo']['name']."_".$fecha->getTimestamp();
     $imagen_temporal=$_FILES['archivo']['tmp_name'];
 
-    move_uploaded_file($imagen_temporal,"imagenes/".$imagen);  
+    move_uploaded_file($imagen_temporal,"media/fotos/fotos_fiestas_discoteca/".$imagen);  
 
     $objConexion= new conexion();
     //string que recuperamos de la base de datos, null para que el "id" lo ponga la bbdd
-    $sql="INSERT INTO `usuarios` (`Usuarios_Id`, `Nombre`, `Apellidos`, `Email`, `Telefono`, `archivo` ) VALUES (NULL, '$nombre', '$apellido', '$email', '$telefono','$imagen');";    
+    $sql="INSERT INTO `usuarios` (`usuario_id`, `nombre`, `apellidos`, `email`, `telefono`, `archivo` ) VALUES (NULL, '$nombre', '$apellido', '$email', '$telefono','$imagen');";    
     //acceder al metodo ejecutar de portafolio y le pasamos un string generando una intruccion
     
     $objConexion->ejecutar($sql);
@@ -31,12 +32,12 @@ if($_GET){
     $objConexion= new conexion();
     
     //Borrado del archivo 
-   $imagen=$objConexion->consultar("SELECT `archivo` FROM `usuarios` WHERE Usuarios_id=".$id); 
-    unlink("imagenes/".$imagen[0]['archivo']); 
+   $imagen=$objConexion->consultar("SELECT `archivo` FROM `usuarios` WHERE usuario_id=".$id); 
+    unlink("media/fotos/fotos_fiestas_discoteca/".$imagen[0]['archivo']); 
 
     //Borrado utilizando el get en la bbdd
-   $sql="DELETE FROM `usuarios` WHERE `usuarios`.`Usuarios_Id` = ".$_GET['borrar'];
-   $sql="DELETE FROM `usuarios` WHERE `usuarios`.`Usuarios_Id` =".$id;
+   $sql="DELETE FROM `usuarios` WHERE `usuarios`.`usuario_id` = ".$_GET['borrar'];
+   $sql="DELETE FROM `usuarios` WHERE `usuarios`.`usuario_id` =".$id;
    
     $objConexion->ejecutar($sql);
     header("location:portafolio.php");
@@ -47,7 +48,7 @@ if($_GET){
 $objConexion= new conexion();
 //seleccioname todos los registros de la tabla usuario (fetchall en conexion)
    
-$proyectos=$objConexion->consultar("SELECT * FROM `Usuarios`");
+$fiestas=$objConexion->consultar("SELECT * FROM `usuarios`");
 //para ver si la info que llega en forma array print_r($resultado)
 
 
@@ -60,7 +61,7 @@ $proyectos=$objConexion->consultar("SELECT * FROM `Usuarios`");
         <div class="col-md-6">
             <div class="card">
     <div class="card-header">
-        Datos del proyecto 
+        Datos de la fiesta
     </div>
     <div class="card-body">
       <!--Enctype recepciona los archivos-->
@@ -77,7 +78,7 @@ $proyectos=$objConexion->consultar("SELECT * FROM `Usuarios`");
    Foto: <input required="Introduce foto del evento/dj"  class="" type="file"  name="archivo">
    <br>
 
-    <input type="submit" value="Enviar proyecto">
+    <input type="submit" value="Enviar fiesta">
 </form>
     </div>
    
@@ -96,17 +97,17 @@ $proyectos=$objConexion->consultar("SELECT * FROM `Usuarios`");
         </tr>
     </thead>
     <tbody>
-    <?php //todos los proyectos leelos de proyectos en proyectos
-         foreach($proyectos as $proyecto){?>
+    <?php //todos las fiestas leelos de fiestas en fiestas
+         foreach($fiestas as $fiesta){?>
         <tr>
-            <td><?php echo $proyecto['Nombre'];?></td>
-            <td><?php echo $proyecto['Apellidos'];?></td>
-            <td><?php echo $proyecto['Email'];?></td>
-            <td><?php echo $proyecto['Telefono'];?></td>
-            <td><img width="100" src="imagenes/<?php echo $proyecto['archivo']; ?>" alt="" srcset=""> </td>
+            <td><?php echo $fiesta['nombre'];?></td>
+            <td><?php echo $fiesta['apellidos'];?></td>
+            <td><?php echo $fiesta['email'];?></td>
+            <td><?php echo $fiesta['telefono'];?></td>
+            <td><img width="100" src="media/fotos/fotos_fiestas_discoteca/<?php echo $fiesta['archivo']; ?>" alt="" srcset=""> </td>
              
             
-            <td><a type="button" class="" href="?borrar=<?php echo $proyecto['Usuarios_Id'];?>">Eliminar</a></td>
+            <td><a type="button" class="" href="?borrar=<?php echo $fiesta['usuario_id'];?>">Eliminar</a></td>
         </tr>    
             <?php
     //parece raro pero asi hace la lectura

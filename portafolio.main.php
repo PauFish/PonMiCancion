@@ -3,41 +3,54 @@
 <?php 
 
 if($_POST){
-    $nombre= $_POST['nombre'];
-    $descripcion= $_POST['descripcion'];
+    
+    $nombre=$_POST['nombre'];
+    $apellido=$_POST['apellido'];
+    $email=$_POST['email'];
+    $telefono=$_POST['telefono'];
 
-    $fecha= new DateTime();
-
-    $imagen=$fecha->getTimestamp()."_".$_FILES['archivo']['name'];
-
+    $fecha=new DateTime();
+    //mumeros de tiempo _ nombre del archivo
+    $imagen=$_FILES['archivo']['name']."_".$fecha->getTimestamp();
     $imagen_temporal=$_FILES['archivo']['tmp_name'];
 
-    move_uploaded_file($imagen_temporal,"imagenes/".$imagen);
+    move_uploaded_file($imagen_temporal,"media/fotos/fotos_fiestas_discoteca/".$imagen);  
 
     $objConexion= new conexion();
-    $sql="INSERT INTO `proyectos` (`id`, `nombre`, `imagen`, `descripcion`) VALUES (NULL,'$nombre', '$imagen', '$descripcion');";
+    //string que recuperamos de la base de datos, null para que el "id" lo ponga la bbdd
+    $sql="INSERT INTO `usuarios` (`usuario_id`, `nombre`, `apellidos`, `email`, `telefono`, `archivo` ) VALUES (NULL, '$nombre', '$apellido', '$email', '$telefono','$imagen');";    
+    //acceder al metodo ejecutar de portafolio y le pasamos un string generando una intruccion
+    
     $objConexion->ejecutar($sql);
     header("location:portafolio.php");
 
 }
 if($_GET){
 
-    $id=$_GET['borrar'];
+    $id=$_GET["borrar"]; 
     $objConexion= new conexion();
     
-    $imagen=$objConexion->consultar("SELECT imagen FROM `proyectos` WHERE id=".$id);
-    unlink("imagenes/".$imagen[0]['imagen']);
+    //Borrado del archivo 
+   $imagen=$objConexion->consultar("SELECT `archivo` FROM `usuarios` WHERE usuario_id=".$id); 
+    unlink("media/fotos/fotos_fiestas_discoteca/".$imagen[0]['archivo']); 
 
-    $sql="DELETE FROM `proyectos` WHERE `proyectos`.`id` =".$id;
+    //Borrado utilizando el get en la bbdd
+   $sql="DELETE FROM `usuarios` WHERE `usuarios`.`usuario_id` = ".$_GET['borrar'];
+   $sql="DELETE FROM `usuarios` WHERE `usuarios`.`usuario_id` =".$id;
+   
     $objConexion->ejecutar($sql);
     header("location:portafolio.php");
     
 }
-
+//creamos una isntancia para crear la conexion con el contrucctor de conexion.php
+   
 $objConexion= new conexion();
-$proyectos=$objConexion->consultar("SELECT * FROM `proyectos`");
+//seleccioname todos los registros de la tabla usuario (fetchall en conexion)
+   
+$fiestas=$objConexion->consultar("SELECT * FROM `usuarios`");
+//para ver si la info que llega en forma array print_r($resultado)
 
-//print_r($proyectos);
+
 
 ?>
 <br/>
@@ -47,20 +60,24 @@ $proyectos=$objConexion->consultar("SELECT * FROM `proyectos`");
         <div class="col-md-6">
             <div class="card">
     <div class="card-header">
-        Datos del proyecto 
+        Datos de la fiesta
     </div>
     <div class="card-body">
-     <form action="portafolio.php" method="post" enctype="multipart/form-data" >
+      <!--Enctype recepciona los archivos-->
+<form method="post" action="portafolio.php" enctype="multipart/form-data">
+    <!--introduce el nombre" es para accesibilidad-->
+    Nombre: <input required="Introduce tu Nombre"  class="" type="text" name="nombre" >
+   <br>
+    Apellido: <input required="Introduce tu Apellido"  class="" type="text"  name="apellido">
+    <br>
+    Email: <input required="Introduce tu Email"  class="" type="text"  name="email">
+    <br>
+    Telefono: <input required="Introduce tu Telefono"  class="" type="text"  name="telefono">
+   <br>
+   Foto: <input required="Introduce foto del evento/dj"  class="" type="file"  name="archivo">
+   <br>
 
-    Nombre del proyecto: <input required class="form-control" type="text" name="nombre" id=""> 
-    <br/>
-    Imagen del proyecto: <input required class="form-control" type="file" name="archivo" id=""> 
-    <br/>
-    Descripción: 
-      <textarea  required class="form-control" name="descripcion" id="" rows="3"></textarea>
-    <br/>
-    <input class="btn btn-success" type="submit" value="Enviar proyecto">
-
+    <input type="submit" value="Enviar fiesta">
 </form>
     </div>
    
@@ -70,33 +87,36 @@ $proyectos=$objConexion->consultar("SELECT * FROM `proyectos`");
 <table class="table">
     <thead>
         <tr>
-            <th>ID</th>
             <th>Nombre</th>
-            <th>Imagen</th>
-            <th>Descripción</th>
-            <th>Acciones</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Telefono</th>
+            <th>Foto</th>
+            <th>Eliminar</th>
         </tr>
     </thead>
     <tbody>
-       <?php foreach($proyectos as $proyecto) { ?>
+    <?php //todos las fiestas leelos de fiestas en fiestas
+         foreach($fiestas as $fiesta){?>
         <tr>
-            <td><?php echo $proyecto['id']; ?></td>
-            <td><?php echo $proyecto['nombre']; ?> </td>
-            <td>
-               <img width="100" src="imagenes/<?php echo $proyecto['imagen']; ?>" alt="" srcset=""> 
+            <td><?php echo $fiesta['nombre'];?></td>
+            <td><?php echo $fiesta['apellidos'];?></td>
+            <td><?php echo $fiesta['email'];?></td>
+            <td><?php echo $fiesta['telefono'];?></td>
+            <td><img width="100" src="media/fotos/fotos_fiestas_discoteca/<?php echo $fiesta['archivo']; ?>" alt="" srcset=""> </td>
+             
             
-        
-        
-        </td>
-            <td><?php echo $proyecto['descripcion']; ?></td>
-            <td> <a class="btn btn-danger" href="?borrar=<?php echo $proyecto['id']; ?>">Eliminar</a> </td>
-        </tr>
-        <?php } ?>
+            <td><a type="button" class="" href="?borrar=<?php echo $fiesta['usuario_id'];?>">Eliminar</a></td>
+        </tr>    
+            <?php
+    //parece raro pero asi hace la lectura
+     } ?>
             </tbody>
 </table>
         </div>
         
     </div>
 </div>
+
 
 <?php include("pie.php"); ?>
