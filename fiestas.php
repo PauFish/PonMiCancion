@@ -1,7 +1,11 @@
-<!doctype html>
+<?php include("cabecera.php"); ?>
+<?php include("conexion.php"); ?>
+<?php $objConexion= new conexion();
+$usuarios=$objConexion->consultar("SELECT * FROM `usuarios`");?>
+
 <html lang="en">
   <head>
-    <title>Login</title>
+    <title>Pon Mi Cancion</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,19 +15,11 @@
 
   </head>
   <body>
-    <div class="background">
-      <img src="media/fotos/web/pmc_index.jpg" alt="" >
-    </div>
-
-  <div class="buttons_index">
-    <form action="nuevo_usuario.php" class="registrate_button">
-    <input type="submit" value="REGISTRATE YA" />
-
-    <form action="login.php" class="ya_registrado_button">
-    <input type="submit" value="YA REGISTADO" />
-   
-  </div>
+  <h1>Las Mejores Fiestas</h1>
+        
   
 
   </body>
 </html>
+
+<?php include("footer.php"); ?>

@@ -20,10 +20,10 @@ if($_POST){
     $objConexion= new conexion();
     //string que recuperamos de la base de datos, null para que el "id" lo ponga la bbdd
     $sql="INSERT INTO `usuarios` (`usuario_id`, `nombre`, `apellidos`, `email`, `telefono`, `archivo` ) VALUES (NULL, '$nombre', '$apellido', '$email', '$telefono','$imagen');";    
-    //acceder al metodo ejecutar de portafolio y le pasamos un string generando una intruccion
+    //acceder al metodo ejecutar de nuevo_usuario y le pasamos un string generando una intruccion
 
     $objConexion->ejecutar($sql);
-    header("location:portafolio.php");
+    header("location:nuevo_usuario.php");
 
 }
 if($_GET){
@@ -40,7 +40,7 @@ if($_GET){
    $sql="DELETE FROM `usuarios` WHERE `usuario_id` =".$id;
 
     $objConexion->ejecutar($sql);
-    header("location:portafolio.php");
+    header("location:nuevo_usuario.php");
 
 }
 //creamos una isntancia para crear la conexion con el contrucctor de conexion.php
@@ -65,7 +65,7 @@ $proyectos=$objConexion->consultar("SELECT * FROM `usuarios`");
     </div>
     <div class="card-body">
       <!--Enctype recepciona los archivos-->
-<form method="post" action="portafolio.php" enctype="multipart/form-data">
+<form method="post" action="nuevo_usuario.php" enctype="multipart/form-data">
     <!--introduce el nombre" es para accesibilidad-->
     Nombre: <input required="Introduce tu Nombre"  class="" type="text" name="nombre" >
    <br>
@@ -117,5 +117,4 @@ $proyectos=$objConexion->consultar("SELECT * FROM `usuarios`");
     </div>
 </div>
 
-
-<?php include("pie.php"); ?>
+<?php include("footer.php"); ?>

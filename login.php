@@ -6,7 +6,7 @@ if($_POST){
     
             $_SESSION['usuario']="pau"; 
      
-       header("location:index.php");
+       header("location:usuarios.php");
 
     }else{
         echo "<script> alert('Usuario o contraseña incorrecta'); </script>";
@@ -52,7 +52,7 @@ Usuario: <input class="form-control" type="text" name="usuario" id="">
 <br/>
 Contraseña: <input class="form-control" type="password" name="contrasenia" id="">
 <br/>
-<button class="btn btn-success" type="submit">Entrar al portafolio</button>
+<button class="btn btn-success" type="submit">Entrar</button>
 
     </form>
 
