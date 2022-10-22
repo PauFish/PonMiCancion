@@ -16,11 +16,15 @@ class conexion{
                 return "falla de conexión".$e;
         }
     }
+
+
     //ejecuta una isntruccion sql y retorna el ultimo id. Para Insert, Update, Delete
     public function ejecutar($sql){ // Insertar/delete/Actualizar
         $this->conexion->exec($sql);
         return $this->conexion->lastInsertId();
     }
+
+    
     public function consultar($sql){
         /*ejecutar la intruccion con 'prepare', tomar la intruccion  sql y almacenarla en una
          variable, dicha variable ya tiene la informacion de retorno que seria toda la informacion*/

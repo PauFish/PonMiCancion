@@ -105,8 +105,6 @@ $proyectos=$objConexion->consultar("SELECT * FROM `usuarios`");
             <td><?php echo $proyecto['email'];?></td>
             <td><?php echo $proyecto['telefono'];?></td>
             <td><img width="100" src="media/fotos/fotos_fiestas_discoteca<?php echo $proyecto['archivo']; ?>" alt="" srcset=""> </td>
-
-
             <td><a type="button" class="" href="?borrar=<?php echo $proyecto['usuario_id'];?>">Eliminar</a></td>
         </tr>    
             <?php

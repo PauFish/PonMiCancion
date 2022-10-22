@@ -28,10 +28,6 @@ $usuarios=$objConexion->consultar("SELECT * FROM `usuarios`");?>
       </div>
     </div>
     </div>
-
 <?php } ?>
-
- 
 </div>
-
 <?php include("pie.php"); ?>
