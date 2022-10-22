@@ -1,3 +1,4 @@
+<?php include("cabecera.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,44 +13,54 @@
 <body>
 
 <div class="container_contacto">
-  <div class="row header">
-    <h1>CONTACT US &nbsp;</h1>
-    <h3>Fill out the form below to learn more!</h3>
+  <div class="form_contacto">
+    <h2>Contacta con nosotros</h2>
+    <h3>Te responderemos lo antes posible</h3>
   </div>
-  <div class="row body">
-    <form action="#">
+    <form action="">
       <ul>
         
         <li>
-          <p class="left">
-            <label for="first_name">first name</label>
-            <input type="text" name="first_name" placeholder="John" />
+          <p class="">
+            <label for="first_name">Nombre<span class="req">*</span></label>
+            <input type="text" name="formulario_contact_name" placeholder="Tu nombre"required />
           </p>
-          <p class="pull-right">
-            <label for="last_name">last name</label>
-            <input type="text" name="last_name" placeholder="Smith" />      
+          </li>
+          <li>
+          <p class="">
+            <label for="last_name">Apellidos<span class="req">*</span></label>
+            <input type="text" name="contact_name" placeholder="Apellidos"required />      
+          </p>
+          </li>
+          <li>
+          <p class="">
+            <label for="last_name">Telefono</span></label>
+            <input type="text" name="contact_telefono" placeholder="Telefono"/>      
           </p>
         </li>
         
         <li>
           <p>
-            <label for="email">email <span class="req">*</span></label>
-            <input type="email" name="email" placeholder="john.smith@gmail.com" />
+            <label for="email">Email <span class="req">*</span></label>
+            <input type="email" name="formulario_contact_email" placeholder="tuEmail@gmail.com" required/>
           </p>
-        </li>        
-        <li><div class="divider"></div></li>
+        </li>  
+        <label for="ayudarte">¿En que podemos ayudarte?</label>
         <li>
-          <label for="comments">comments</label>
-          <textarea cols="46" rows="3" name="comments"></textarea>
+          
+          <textarea rows="4" cols="40"  name="formulario_contact_ayudarte"required></textarea>
         </li>
+        <!--https://mailthis.to/-->
+        <form action="index.php" class="form_button_contacto" action="https://mailthis.to/contacto@ponmicancion.com" method="POST">
+            
+    <input type="submit" value="Enviar" />
         
-        <li>
-          <input class="btn btn-submit" type="submit" value="Submit" />
-          <small>or press <strong>enter</strong></small>
-        </li>
-        
+   
+
+
       </ul>
     </form>  
   </div>
 
 </div>
+
