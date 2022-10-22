@@ -11,7 +11,7 @@ class conexion{
             $this->conexion= new PDO("mysql:host=$this->servidor;dbname=ponmicancion",$this->usuario,$this->contrasenia);
             //activamos modo error y las exepciones
             $this->conexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            
+
         }catch( PDOException $e){
                 return "falla de conexión".$e;
         }
@@ -33,5 +33,3 @@ class conexion{
 
 }
 
-
-?>

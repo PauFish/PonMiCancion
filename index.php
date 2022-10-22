@@ -1,7 +1,7 @@
 <?php include("cabecera.php"); ?>
 <?php include("conexion.php"); ?>
 <?php $objConexion= new conexion();
-$fiestas=$objConexion->consultar("SELECT * FROM `Usuarios`");?>
+$usuarios=$objConexion->consultar("SELECT * FROM `usuarios`");?>
 
 <div class="p-5 bg-light">
     <div class="container">
@@ -15,21 +15,19 @@ $fiestas=$objConexion->consultar("SELECT * FROM `Usuarios`");?>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
 
-<?php foreach($fiestas as $fiesta) { ?>
+<?php foreach($usuarios as $usuario) { ?>
 
     <div class="col">
     <div class="card">
-    <img src="media/fotos/fotos_fiestas_discoteca/<?php echo $fiesta['archivo']; ?>" alt="" srcset=""> 
+    <img src="media/fotos/fotos_fiestas_discoteca<?php echo $usuario['archivo']; ?>" alt="" srcset=""> 
       <div class="card-body">
-      <td><?php echo $fiesta['nombre'];?></td>
-            <td><?php echo $fiesta['apellidos'];?></td>
-            <td><?php echo $fiesta['email'];?></td>
-            <td><?php echo $fiesta['telefono'];?></td>
-            
-
+            <td><?php echo $usuario['nombre'];?></td>
+            <td><?php echo $usuario['apellidos'];?></td>
+            <td><?php echo $usuario['email'];?></td>
+            <td><?php echo $usuario['telefono'];?></td>
       </div>
     </div>
-  </div>
+    </div>
 
 <?php } ?>
 
