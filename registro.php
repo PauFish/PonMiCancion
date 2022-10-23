@@ -1,3 +1,4 @@
+
 <?php include("cabecera.php"); ?>
 <?php include("conexion.php"); ?>
 <?php 
@@ -32,7 +33,7 @@ if($_GET){
 
     //Borrado del archivo 
    $imagen=$objConexion->consultar("SELECT `archivo` FROM `usuarios` WHERE id=".$id); 
-    unlink("imagenes/".$imagen[0]['archivo']); 
+    unlink("media/fotos/fotos_fiestas_discoteca".$imagen[0]['archivo']); 
 
     //Borrado utilizando el get en la bbdd
    $sql="DELETE FROM `usuarios` WHERE `id` = ".$_GET['borrar'];
@@ -115,6 +116,5 @@ $proyectos=$objConexion->consultar("SELECT * FROM `usuarios`");
 
     </div>
 </div>
-
 
 <?php include("footer.php"); ?>

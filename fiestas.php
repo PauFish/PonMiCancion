@@ -1,25 +1,47 @@
 <?php include("cabecera.php"); ?>
 <?php include("conexion.php"); ?>
 <?php $objConexion= new conexion();
-$usuarios=$objConexion->consultar("SELECT * FROM `usuarios`");?>
 
-<html lang="en">
+
+
+$fiestas=$objConexion->consultar("SELECT * FROM `fiestas`");?>
+
+<html lang="es">
   <head>
     <title>Pon Mi Cancion</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS v5.0.2 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
   </head>
   <body>
-  <h1>Las Mejores Fiestas</h1>
-        
-  
+    <div class="titulo_fiestas_container">
+    <h1>Las Mejores Fiestas</h1>
+    </div>
+ 
+    <div class="lanzador_fiestas_container">
+
+    <?php foreach($fiestas as $fiesta) { ?>
+
+      <div class="col">
+      <div class="card">
+      <img src="media/fotos/fotos_fiestas_discoteca<?php echo $fiesta['archivo']; ?>" alt="" srcset=""> 
+        <div class="card-body">
+            <td><?php echo $fiesta['nombre_fiesta'];?></td>
+            <td><?php echo $fiesta['musica_fiesta'];?></td>
+            <td><?php echo $fiesta['fotos_fiesta'];?></td>
+            
+        </div>
+      </div>
+      </div>
+  <?php } ?>
+  </div>
 
   </body>
 </html>
 
 <?php include("footer.php"); ?>
+
+
+
+
+

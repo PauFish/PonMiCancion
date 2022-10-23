@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `usuarios` (
-  `Usuarios_Id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `Nombre` varchar(50) NOT NULL,
   `Apellidos` varchar(50) NOT NULL,
   `Email` varchar(50) NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE `usuarios` (
 -- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`Usuarios_Id`, `Nombre`, `Apellidos`, `Email`, `Telefono`, `archivo`) VALUES
+INSERT INTO `usuarios` (`id`, `Nombre`, `Apellidos`, `Email`, `Telefono`, `archivo`) VALUES
 (24, 'Pau', 'del Rey', 'pausiqrey8@gmail.com', 648499970, '1665947139_idoneth-review-05.jpg'),
 (25, 'Kasia', 'Kozlowska', 'kozlowska.poznan@gmail.com', 648499970, '1665947154_1 (1).jpg'),
 (26, 'Katarzyna', 'Kozlowska', 'kozlowska.poznan@gmail.com', 689251380, '1665947165_a554b17b16cf946e0b44e8773be52b8c.jpg');
@@ -52,7 +52,7 @@ INSERT INTO `usuarios` (`Usuarios_Id`, `Nombre`, `Apellidos`, `Email`, `Telefono
 -- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`Usuarios_Id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -62,7 +62,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `Usuarios_Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

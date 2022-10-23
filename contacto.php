@@ -50,7 +50,7 @@
           
           <textarea rows="4" cols="40"  name="formulario_contact_ayudarte"required></textarea>
         </li>
-        <!--https://mailthis.to/-->
+        <!--Envia el formulario a nuestro email preferido gratuitamente gracias a: https://mailthis.to/-->
         <form action="index.php" class="form_button_contacto" action="https://mailthis.to/contacto@ponmicancion.com" method="POST">
             
     <input type="submit" value="Enviar" />

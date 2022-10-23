@@ -1,5 +1,5 @@
 
-<?php include("cabecera.php"); ?>
+
 <?php include("conexion.php"); ?>
 <?php 
 
@@ -19,7 +19,7 @@ if($_POST){
 
     $objConexion= new conexion();
     //string que recuperamos de la base de datos, null para que el "id" lo ponga la bbdd
-    $sql="INSERT INTO `usuarios` (`usuario_id`, `nombre`, `apellidos`, `email`, `telefono`, `archivo` ) VALUES (NULL, '$nombre', '$apellido', '$email', '$telefono','$imagen');";    
+    $sql="INSERT INTO `usuarios` (`id`, `nombre`, `apellidos`, `email`, `telefono`, `archivo` ) VALUES (NULL, '$nombre', '$apellido', '$email', '$telefono','$imagen');";    
     //acceder al metodo ejecutar de nuevo_usuario y le pasamos un string generando una intruccion
 
     $objConexion->ejecutar($sql);
@@ -32,12 +32,12 @@ if($_GET){
     $objConexion= new conexion();
 
     //Borrado del archivo 
-   $imagen=$objConexion->consultar("SELECT `archivo` FROM `usuarios` WHERE usuario_id=".$id); 
-    unlink("imagenes/".$imagen[0]['archivo']); 
+   $imagen=$objConexion->consultar("SELECT `archivo` FROM `usuarios` WHERE id=".$id); 
+    unlink("media/fotos/fotos_fiestas_discoteca/".$imagen[0]['archivo']); 
 
     //Borrado utilizando el get en la bbdd
-   $sql="DELETE FROM `usuarios` WHERE `usuario_id` = ".$_GET['borrar'];
-   $sql="DELETE FROM `usuarios` WHERE `usuario_id` =".$id;
+   $sql="DELETE FROM `usuarios` WHERE `id` = ".$_GET['borrar'];
+   $sql="DELETE FROM `usuarios` WHERE `id` =".$id;
 
     $objConexion->ejecutar($sql);
     header("location:nuevo_usuario.php");
@@ -82,39 +82,5 @@ $proyectos=$objConexion->consultar("SELECT * FROM `usuarios`");
 </form>
     </div>
 
-</div>
-        </div>
-        <div class="col-md-6">
-<table class="table">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Email</th>
-            <th>Telefono</th>
-            <th>Foto</th>
-            <th>Eliminar</th>
-        </tr>
-    </thead>
-    <tbody>
-    <?php //todos los proyectos leelos de proyectos en proyectos
-         foreach($proyectos as $proyecto){?>
-        <tr>
-            <td><?php echo $proyecto['nombre'];?></td>
-            <td><?php echo $proyecto['apellidos'];?></td>
-            <td><?php echo $proyecto['email'];?></td>
-            <td><?php echo $proyecto['telefono'];?></td>
-            <td><img width="100" src="media/fotos/fotos_fiestas_discoteca<?php echo $proyecto['archivo']; ?>" alt="" srcset=""> </td>
-            <td><a type="button" class="" href="?borrar=<?php echo $proyecto['usuario_id'];?>">Eliminar</a></td>
-        </tr>    
-            <?php
-    //parece raro pero asi hace la lectura
-     } ?>
-            </tbody>
-</table>
-        </div>
-
-    </div>
-</div>
 
 <?php include("footer.php"); ?>
