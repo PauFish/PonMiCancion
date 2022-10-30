@@ -16,11 +16,10 @@
     </div>
 
   <div class="buttons_index">
-    <form action="nuevo_usuario.php" class="registrate_button">
-    <input type="submit" value="REGISTRATE YA" />
+  
 
-    <form action="login.php" class="ya_registrado_button">
-    <input type="submit" value="YA REGISTADO" />
+    <form action="index2.php" class="ya_registrado_button">
+    <input type="submit" value="Pon Mi Cancion" />
    
   </div>
   

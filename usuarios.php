@@ -1,7 +1,6 @@
-<?php include("cabecera.php"); ?>
-<?php include("conexion.php"); ?>
-<?php $objConexion= new conexion();
-$usuarios=$objConexion->consultar("SELECT * FROM `usuarios`");?>
+<?php // include("cabecera.php"); ?>
+<?php //include("conexion.php"); ?>
+<?php //$objConexion= new conexion();$usuarios=$objConexion->consultar("SELECT * FROM `usuarios`");?>
 
 <div class="p-5 bg-light">
     <div class="container">
