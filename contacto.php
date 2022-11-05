@@ -1,4 +1,4 @@
-<?php // include("cabecera.php"); ?>
+<?php  include("cabecera.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

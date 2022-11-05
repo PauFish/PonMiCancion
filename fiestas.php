@@ -1,7 +1,7 @@
 
 
 <!-- Control de usuarios aniguos hay que arreglarlo-->
-<?php //include("cabecera.php"); ?>
+<?php  include("cabecera.php"); ?>
 <!-- conexion con la base de datos-->
 <?php include("conexion.php"); ?>
 <?php $objConexion= new conexion();?>
@@ -31,7 +31,7 @@
       <img src="media/fotos/fotos_fiestas_discoteca<?php echo $fiesta['archivo']; ?>" alt="" srcset=""> 
         <div class="card-body">
             <td><?php echo $fiesta['fiesta'];?></td>
-            <td><img width="100" src="media/fotos/fotos_fiestas_discoteca<?php echo $fiesta['cartel']; ?>" alt="" srcset=""> </td>
+            <td><a title="Entrar" href="/ponmicancion/canciones.php"><img width="100" src="media/fotos/fotos_fiestas_discoteca<?php echo $fiesta['cartel']; ?>" alt="" srcset=""> </td>
             
             
         </div>

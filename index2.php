@@ -25,7 +25,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Welcome to you WebApp</title>
+    <title>Pon Mi Cancion</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
   </head>
@@ -40,10 +40,10 @@
         Logout
       </a>
     <?php else: ?>
-      <h1>Please Login or SignUp</h1>
+      <h1> Entra y elige</h1>
 
       <a href="login2.php">Login</a> or
-      <a href="signup.php">SignUp</a>
+      <a href="signup.php">Registrar</a>
     <?php endif; ?>
   </body>
 </html>

@@ -1,4 +1,4 @@
-<?php //include("cabecera.php"); ?>
+<?php  include("cabecera.php"); ?>
 <?php include("conexion.php"); ?>
 <?php 
 

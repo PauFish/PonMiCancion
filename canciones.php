@@ -1,7 +1,7 @@
 
 
 <!-- Control de usuarios aniguos hay que arreglarlo-->
-<?php //include("cabecera.php"); ?>
+<?php  include("cabecera.php"); ?>
 <!-- conexion con la base de datos-->
 <?php include("conexion.php"); ?>
 <?php $objConexion= new conexion();?>

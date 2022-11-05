@@ -1,8 +1,8 @@
-<?php 
+<?php /*
 session_start();
 if( isset($_SESSION['usuario'])!="develoteca"){
     header("location:login.php");
-}
+} */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,13 +20,12 @@ if( isset($_SESSION['usuario'])!="develoteca"){
 <div class="container">
 
 
-<a href="index.php"> Inicio </a> | 
-    <a href="nuevo_usuario.php"> Introducir datos </a> |
-    <a href="usuarios.php"> Usuarios </a>|
-    <a href="dj.php"> DJ's </a>|
+<a href="index2.php"> Inicio </a> | 
+    
     <a href="fiestas.php"> Fiestas </a>|
-    <a href="discotecas.php"> Discotecas </a>|
-    <a href="cerrar.php"> Cerrar </a>
+    <a href="canciones.php"> Canciones </a>|
+    <a href="contacto.php"> Contacto </a>|
+    <a href="cerrar.php"> Cerrar Sesion </a>
 
     <br/>
 </div>
