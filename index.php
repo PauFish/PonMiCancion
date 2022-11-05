@@ -18,7 +18,7 @@
   <div class="buttons_index">
   
 
-    <form action="index2.php" class="ya_registrado_button">
+    <form action="index2.php" class="">
     <input type="submit" value="Pon Mi Cancion" />
    
   </div>

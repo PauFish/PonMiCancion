@@ -1,3 +1,4 @@
+<!---------------- Una vez ya dentro de tu usuario con tus credenciales-->
 <?php
   session_start();
 
@@ -16,6 +17,9 @@
     }
   }
 ?>
+
+
+
 <!---------------- una vez ya dentro de tu usuario con tus credenciales-->
 <!DOCTYPE html>
 <html>
@@ -29,8 +33,9 @@
     <?php require 'partials/header.php' ?>
 
     <?php if(!empty($user)): ?>
-      <br> Welcome. <?= $user['email']; ?>
-      <br>You are Successfully Logged In
+      <br>Hola! <?= $user['email']; ?>
+      <br>Vamos de fiesta!</br>
+      <button type="button"><a href="fiestas.php">Fiestas Disponibles</a> </button>
       <a href="logout.php">
         Logout
       </a>

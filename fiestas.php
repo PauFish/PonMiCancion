@@ -1,10 +1,14 @@
-<?php include("cabecera.php"); ?>
+
+
+<!-- Control de usuarios aniguos hay que arreglarlo-->
+<?php //include("cabecera.php"); ?>
+<!-- conexion con la base de datos-->
 <?php include("conexion.php"); ?>
-<?php $objConexion= new conexion();
+<?php $objConexion= new conexion();?>
 
 
 
-$fiestas=$objConexion->consultar("SELECT * FROM `fiestas`");?>
+
 
 <html lang="es">
   <head>
@@ -19,16 +23,16 @@ $fiestas=$objConexion->consultar("SELECT * FROM `fiestas`");?>
     </div>
  
     <div class="lanzador_fiestas_container">
-
+    <?php $fiestas=$objConexion->consultar("SELECT * FROM `fiestas`");?>
     <?php foreach($fiestas as $fiesta) { ?>
 
       <div class="col">
       <div class="card">
       <img src="media/fotos/fotos_fiestas_discoteca<?php echo $fiesta['archivo']; ?>" alt="" srcset=""> 
         <div class="card-body">
-            <td><?php echo $fiesta['nombre_fiesta'];?></td>
-            <td><?php echo $fiesta['musica_fiesta'];?></td>
-            <td><?php echo $fiesta['fotos_fiesta'];?></td>
+            <td><?php echo $fiesta['fiesta'];?></td>
+            <td><img width="100" src="media/fotos/fotos_fiestas_discoteca<?php echo $fiesta['cartel']; ?>" alt="" srcset=""> </td>
+            
             
         </div>
       </div>

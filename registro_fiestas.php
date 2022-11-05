@@ -1,27 +1,27 @@
-<?php include("cabecera.php"); ?>
+<?php //include("cabecera.php"); ?>
 <?php include("conexion.php"); ?>
 <?php 
 
 if($_POST){
-    $nombre_fiesta= $_POST['nombre_fiesta'];
-    $musica_fiesta=$_POST['musica_fiesta'];
-    $fotos_fiesta=$_POST['fotos_fiesta'];
+    $fiesta= $_POST['fiesta'];
+ 
+    $cartel=$_POST['cartel'];
     
 
     $fecha=new DateTime();
     //mumeros de tiempo _ nombre de fotos_fiesta
-    $fotos_fiesta=$fecha->getTimestamp()."_".$_FILES['fotos_fiesta']['name'];
-    $fotos_fiesta_temporal=$_FILES['fotos_fiesta']['tmp_name'];
+    $cartel=$fecha->getTimestamp()."_".$_FILES['cartel']['name'];
+    $cartel_temporal=$_FILES['cartel']['tmp_name'];
 
-    move_uploaded_file($fotos_fiesta_temporal,"media/fotos/fotos_fiestas_discoteca".$fotos_fiesta);  
+    move_uploaded_file($cartel_temporal,"media/fotos/fotos_fiestas_discoteca".$cartel);  
 
     $objConexion= new conexion();
     //string que recuperamos de la base de datos, null para que el "id" lo ponga la bbdd
-    $sql="INSERT INTO `fiestas` (`id`, `nombre_fiesta`, `musica_fiesta`, `fotos_fiesta` ) VALUES (NULL, '$nombre_fiesta', '$musica_fiesta', '$fotos_fiesta');";    
+    $sql="INSERT INTO `fiestas` (`id`, `fiesta`, `cartel` ) VALUES (NULL, '$fiesta', '$cartel');";    
     //acceder al metodo ejecutar de registro_fiesta y le pasamos un string generando una intruccion
 
     $objConexion->ejecutar($sql);
-    header("location:registro_fiesta.php");
+    header("location:registro_fiestas.php");
 
 }
 if($_GET){
@@ -30,15 +30,15 @@ if($_GET){
     $objConexion= new conexion();
 
     //Borrado del fotos_fiesta 
-   $fotos_fiesta=$objConexion->consultar("SELECT `fotos_fiesta` FROM `fiestas` WHERE id=".$id); 
-    unlink("media/fotos/fotos_fiestas_discoteca".$fotos_fiesta[0]['fotos_fiesta']); 
+   $cartel=$objConexion->consultar("SELECT `cartel` FROM `fiestas` WHERE id=".$id); 
+    unlink("media/fotos/fotos_fiestas_discoteca".$cartel[0]['cartel']); 
 
     //Borrado utilizando el get en la bbdd
    $sql="DELETE FROM `fiestas` WHERE `id` = ".$_GET['borrar'];
    $sql="DELETE FROM `fiestas` WHERE `id` =".$id;
 
     $objConexion->ejecutar($sql);
-    header("location:registro_fiesta.php");
+    header("location:registro_fiestas.php");
 
 }
 //creamos una isntancia para crear la conexion con el contrucctor de conexion.php
@@ -67,10 +67,9 @@ $fiestas=$objConexion->consultar("SELECT * FROM `fiestas`");
     <!--introduce el nombre" es para accesibilidad-->
     Nombre de la Fiesta: <input required="Nombre la la fiesta"  class="" type="text" name="fiesta" >
    <br>
-    Estilo Musical: <input required="Estilo de musica"  class="" type="text"  name="estilo">
-    <br>
+    
   
-   Foto: <input required="Introduce foto del evento"  class="" type="file"  name="fotos_fiesta">
+   Foto: <input required="Introduce foto del evento"  class="" type="file"  name="cartel">
    <br>
 
   
@@ -87,8 +86,7 @@ $fiestas=$objConexion->consultar("SELECT * FROM `fiestas`");
     <thead>
         <tr>
             <th>Fiestas</th>
-            <th>Estilos</th>
-            <th>fotos</th>
+            <th>Cartel</th>
           
         </tr>
     </thead>
@@ -97,9 +95,9 @@ $fiestas=$objConexion->consultar("SELECT * FROM `fiestas`");
          foreach($fiestas as $fiesta){?>
         <tr>
         <td>
-            <?php echo $fiesta['nombre_fiesta'];?></td>
-            <td><?php echo $fiesta['musica_fiesta'];?></td>
-            <td><img width="100" src="media/fotos/fotos_fiestas_discoteca<?php echo $fiesta['fotos_fiesta']; ?>" alt="" srcset=""> </td>
+            <?php echo $fiesta['fiesta'];?></td>
+            
+            <td><img width="100" src="media/fotos/fotos_fiestas_discoteca<?php echo $fiesta['cartel']; ?>" alt="" srcset=""> </td>
             <td><a type="button" class="" href="?borrar=<?php echo $fiesta['id'];?>">Eliminar</a></td>
         </tr>    
             <?php
